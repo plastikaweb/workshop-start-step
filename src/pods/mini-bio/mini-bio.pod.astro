@@ -1,6 +1,7 @@
 ---
 import MiniBioCard from './components/mini-bio-card.astro';
 import MiniBioHero from './components/mini-bio-hero.astro';
+import { getMiniBio } from './mini-bio.api';
 import type { MiniBioType } from './mini-bio.model';
 
 interface Props {
@@ -8,6 +9,7 @@ interface Props {
 }
 
 const { type } = Astro.props;
+const miniBio = await getMiniBio();
 ---
 
-{type === 'hero' ? <MiniBioHero /> : <MiniBioCard />}
+{type === 'hero' ? <MiniBioHero content={miniBio} /> : <MiniBioCard content={miniBio} />}
