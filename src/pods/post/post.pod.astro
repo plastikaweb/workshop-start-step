@@ -1,0 +1,23 @@
+---
+import type { Post } from '#pods/post-collection/post-collection.model';
+import Body from '#pods/post/components/body.astro';
+import Header from '#pods/post/components/header.astro';
+
+interface Props {
+  post: Post;
+}
+
+const { post } = Astro.props;
+const likeCount = 6;
+
+const postContent = {
+  backButton: 'Go back',
+  published: 'Published',
+  minRead: 'min read',
+};
+---
+
+<section class="flex shrink-1 grow flex-col gap-12 px-6 py-4">
+  <Header goBackText={postContent.backButton} publishedText={postContent.published} date={post.date} />
+  <Body post={post} likeCount={likeCount} minReadText={postContent.minRead} />
+</section>
